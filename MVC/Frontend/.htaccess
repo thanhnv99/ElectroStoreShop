@@ -1,0 +1,30 @@
+#.htaccess, nam cung cap voi file index.php goc cua ung dung
+#file nay thuong dung cho viec viet lai url(rewrite) dang url than thien
+#file nay la 1 file rat nhay cam,chi thua thieu 1 ky tu la se chet trang,can chu y khi chinh sua file nay thuong se nho may moc, chu khong nen hoc ky ve cu phap cua file nay
+#
+#khai bao cho phep sd rewrite url tren he thong
+RewriteEngine ON
+
+#viet rewrite cho trang chi tiet san pham
+#can xac dinh cac gia tri dong de dung bieu thuc regex tuong ung
+#.* ->dai dien cho ky tu bat ky,xuat hien it nhat 1 lan tro len
+#[0-9]{1,} : chi cac ky tu so,xuat hien it nhat 1 lan
+#Cu phap : RewriteRule <link-gia> <link-mvc-that>
+#Trong link-gia co bao nhieu chuoi regex thi tuong ung trong link that se su dung $<vi-tri-regex-cua-link-gia> de don lay gia tri tuong ung
+RewriteRule chi-tiet-san-pham/(.*)/([0-9]{1,}) index.php?controller=product&action=detail&slug=$1&id=$2
+#rule cho trang danh sach san pham
+RewriteRule danh-sach-san-pham/Mobiles index.php?controller=product&action=showAllMobile
+RewriteRule danh-sach-san-pham/Laptops index.php?controller=product&action=showAllLaptop
+RewriteRule danh-sach-san-pham/Televisions index.php?controller=product&action=showAllTivi
+#rule cho trang them vao gio hang
+RewriteRule them-vao-gio-hang/([0-9]{1,}) index.php?controller=cart&action=add&id=$1
+#rule cho trang gio hang cua ban
+RewriteRule gio-hang-cua-ban index.php?controller=cart&action=index
+#rule cho trang xoa san pham trong gio hang
+RewriteRule xoa-san-pham/([0-9]{1,}) index.php?controller=cart&action=delete&id=$1
+#rule cho trang thanh toan
+RewriteRule thanh-toan index.php?controller=payment&action=index
+#rule cho trang cam on khi da thanh toan
+RewriteRule cam-on index.php?controller=payment&action=thank
+#rule cho trang thanh toan truc tuyen
+RewriteRule thanh-toan-truc-tuyen index.php?controller=payment&action=online
